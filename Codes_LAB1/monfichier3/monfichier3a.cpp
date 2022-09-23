@@ -43,6 +43,21 @@ vector<int> saisieTab() {
 */ 
 vector<int> trier(vector<int> T) {
 	//VOTRE CODE VIENT ICI
+	
+	for (int i = T.size() - 1; i > 0; i--) {
+
+		int res = rechercheIndex(T, i);
+
+			if (i>res) {
+
+				int tempValue = T[i];
+				T[i] = T[res];
+				T[res] = tempValue;
+			}			
+	}
+
+	return T;
+	
 }
 
 /* Fonction principale main
