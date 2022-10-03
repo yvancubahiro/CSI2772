@@ -1,0 +1,3 @@
+﻿  monfichier2.cpp
+C:\Users\yvanc\OneDrive\Pictures\Documents\Github\CSI2772\Codes_LAB1\monfichier2\monfichier2.cpp(23,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  monfichier2.vcxproj -> C:\Users\yvanc\OneDrive\Pictures\Documents\Github\CSI2772\x64\Debug\monfichier2.exe
