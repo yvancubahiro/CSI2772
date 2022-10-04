@@ -2,7 +2,7 @@
 
 #include "monfichier2.h"
 
-void trier(int [],int );
+
 
 int main() {
 	int monTab[size_tab] = { 2,4,8,20,3,55,87,13,2,5 };

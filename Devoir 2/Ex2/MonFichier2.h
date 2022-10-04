@@ -5,3 +5,4 @@
 using namespace std;
 const int size_tab = 10;	//nombre d'elements du tableau
 
+void trier(int [],int );
