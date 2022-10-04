@@ -5,7 +5,37 @@ using namespace std;
 
 int** triangleInf(int n)
 {
-	//VOTRE VIENT ICI
+	int ** triangle = new int *[n];
+	
+
+	if(n>=1){
+		*triangle = new int[1];
+		triangle [0][0] = 1;
+	}
+
+	if(n>=2){
+		*(triangle+1) = new int[2];
+		triangle[1][0] = 1;
+		triangle[1][1] = 1;
+	}
+	
+	if(n>=3){
+
+		for(int i = 2; i<n; i++){
+
+			*(triangle+i) = new int[i+1];
+			triangle[i][0] = 1;
+			triangle[i][i] = 1;
+
+			for(int j = 1; j<i ; j++){
+				triangle [i][j] = triangle[i-1][j]+triangle[i-1][j-1];
+			}
+		}
+
+	}
+
+	return triangle;
+
 }
 
 int main() {
