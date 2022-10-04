@@ -2,6 +2,8 @@
 
 #include "monfichier2.h"
 
+void trier(int [],int );
+
 int main() {
 	int monTab[size_tab] = { 2,4,8,20,3,55,87,13,2,5 };
 
@@ -18,5 +20,14 @@ int main() {
 
 void trier(int tab[], int size)
 {
-	//VOTRE CODE VIENT ICI
+	int temp;
+	for(int i = 0; i<size; i++){
+		for(int j = i; j<size; j++){
+			if(tab[i] > tab[j]){
+				temp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = temp;
+			}
+		}
+	}
 }
