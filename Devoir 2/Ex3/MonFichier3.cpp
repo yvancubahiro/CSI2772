@@ -24,9 +24,12 @@ int** triangleInf(int n)
 		for(int i = 2; i<n; i++){
 
 			*(triangle+i) = new int[i+1];
+			//initialize first value
 			triangle[i][0] = 1;
+			//initialize last value
 			triangle[i][i] = 1;
 
+			//calculate middle pascal values
 			for(int j = 1; j<i ; j++){
 				triangle [i][j] = triangle[i-1][j]+triangle[i-1][j-1];
 			}
