@@ -58,11 +58,15 @@ char menu(void)
 }
 
 /********************************************************************************/
-/*La fonction display qui affiche les chaines de caractères*/
+/*La fonction display qui affiche les chaines de caractï¿½res*/
 /********************************************************************************/
 void display(char* tab[], int const& nbre)
 {
 	//VOTRE VIENT ICI
+
+	for(int i=0;i<nbre;i++){
+		cout<<"La chaine "<<i<<" est: "<<*(tab+i)<<endl;
+	}
 }
 
 /*************************************************************/
@@ -76,6 +80,21 @@ void replace(char* tab[], int const& nbre, int const& size)
 	cin >> numero;
 
 	//VOTRE VIENT ICI
+
+	char* nouvelle;
+
+	nouvelle = new char[size];
+
+	cout<<"Saisissez la nouvelle chaine:";
+
+	cin>>nouvelle;
+
+
+	tab[numero]=nouvelle;
+	
+
+	display(tab,nb_ch);
+
 }
 
 /********************************************************************************/
@@ -84,5 +103,26 @@ void replace(char* tab[], int const& nbre, int const& size)
 void trier(char* tab[], int const& nbre)
 {
 	//VOTRE VIENT ICI
+	
+
+	for (int i=0;i<nbre-1;i++){
+		
+
+		for(int j=i;j<nbre;j++){
+			
+			int res=strcmp(tab[i],tab[j]);
+		
+			if(res>0){
+		
+				char* temp;
+				temp=tab[i];
+				tab[i]=tab[j];
+				tab[j]=temp;
+			}
+
+		}
+	}
+	
 }
+	
 
