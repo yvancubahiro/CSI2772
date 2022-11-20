@@ -131,13 +131,21 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Black.h" />
+    <ClInclude Include="Blue.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="Chain.h" />
+    <ClInclude Include="Chili.h" />
     <ClInclude Include="Coins.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DiscardPile.h" />
+    <ClInclude Include="Garden.h" />
+    <ClInclude Include="Green.h" />
     <ClInclude Include="Hand.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Red.h" />
+    <ClInclude Include="Soy.h" />
+    <ClInclude Include="Stink.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TradeArea.h" />
   </ItemGroup>

@@ -15,6 +15,14 @@ using namespace std;
 #include "Player.h"
 #include "Table.h"
 #include "TradeArea.h"
+#include "Black.h"
+#include "Blue.h"
+#include "Chili.h"
+#include "Garden.h"
+#include "Green.h"
+#include "Red.h"
+#include "Soy.h"
+#include "Stink.h"
 
 int main()
 {

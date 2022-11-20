@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\CardsType">
+      <UniqueIdentifier>{2c10f346-f701-4c7c-b6e1-76a0cf4f67a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -49,6 +52,30 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blue.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Chili.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Stink.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Green.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Soy.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Black.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Red.h">
+      <Filter>Header Files\CardsType</Filter>
+    </ClInclude>
+    <ClInclude Include="Garden.h">
+      <Filter>Header Files\CardsType</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
