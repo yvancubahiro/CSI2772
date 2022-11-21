@@ -1,11 +1,12 @@
 #pragma once
-class Blue : Card
+class Blue : public Card
 {
 public:
-	Blue() : Card(4, 6, 8, 10) {}
 
-private:
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out) ;
 
-};
+}
 
 

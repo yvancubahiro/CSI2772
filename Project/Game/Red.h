@@ -1,5 +1,5 @@
 #pragma once
-class Red : Card {
+class Red : public Card {
 public:
 	int getCardsPerCoin(int coins);
 	string getName();

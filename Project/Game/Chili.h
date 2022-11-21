@@ -1,5 +1,5 @@
 #pragma once
-class Chilli : Card
+class Chili : public Card
 {
 public:
 

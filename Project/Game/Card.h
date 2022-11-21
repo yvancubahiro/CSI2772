@@ -4,6 +4,7 @@
 class Card {
 	
 public :
+	/*
 	const int oneCoinWorth;
 	const int twoCoinWorth;
 	const int threeCoinWorth;
@@ -16,7 +17,9 @@ public :
 		fourCoinWorth(four)
 	{
 
-	}
+	}*/
+
+	int cardCount;
 
 	virtual int getCardsPerCoin(int coins) = 0;
 	virtual string getName() = 0;

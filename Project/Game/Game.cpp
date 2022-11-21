@@ -24,6 +24,187 @@ using namespace std;
 #include "Soy.h"
 #include "Stink.h"
 
+Black::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 2;
+    }
+    else if (coins == 2) {
+        cards = 4;
+    }
+    else if (coins == 3) {
+        cards = 5;
+    }
+    else if (coins == 4) {
+        cards = 6;
+    }
+
+    return cards;
+}
+
+Blue::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 4;
+    }
+    else if (coins == 2) {
+        cards = 6;
+    }
+    else if (coins == 3) {
+        cards = 8;
+    }
+    else if (coins == 4) {
+        cards = 10;
+    }
+
+    return cards;
+}
+
+Chili::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 3;
+    }
+    else if (coins == 2) {
+        cards = 6;
+    }
+    else if (coins == 3) {
+        cards = 8;
+    }
+    else if (coins == 4) {
+        cards = 9;
+    }
+
+    return cards;
+
+}
+
+Garden::getCardsPerCoin(int coins) {
+    int cards = 0;
+   
+    if (coins == 2) {
+        cards = 2;
+    }
+    else if (coins == 3) {
+        cards = 3;
+    }
+   
+    return cards;
+}
+
+Green::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 3;
+    }
+    else if (coins == 2) {
+        cards = 5;
+    }
+    else if (coins == 3) {
+        cards = 6;
+    }
+    else if (coins == 4) {
+        cards = 7;
+    }
+
+    return cards;
+}
+
+Red::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 2;
+    }
+    else if (coins == 2) {
+        cards = 3;
+    }
+    else if (coins == 3) {
+        cards = 4;
+    }
+    else if (coins == 4) {
+        cards = 5;
+    }
+
+    return cards;
+}
+
+Soy::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 2;
+    }
+    else if (coins == 2) {
+        cards = 4;
+    }
+    else if (coins == 3) {
+        cards = 6;
+    }
+    else if (coins == 4) {
+        cards = 7;
+    }
+
+    return cards;
+}
+
+Stink::getCardsPerCoin(int coins) {
+    int cards = 0;
+    if (coins == 1) {
+        cards = 3;
+    }
+    else if (coins == 2) {
+        cards = 5;
+    }
+    else if (coins == 3) {
+        cards = 7;
+    }
+    else if (coins == 4) {
+        cards = 8;
+    }
+
+    return cards;
+}
+
+Black::getName() {
+    return "Black"
+
+}
+
+Blue::getName() {
+    return "Blue"
+
+}
+
+Chili::getName(){
+    return "Chilli"
+}
+
+Garden::getName() {
+    return "Garden"
+
+}
+
+Green::getName() {
+    return "Green"
+
+}
+
+Red::getName() {
+    return "Red"
+
+}
+
+Soy::getName() {
+    return "Soy"
+
+}
+
+Stink::getName() {
+    return "Stink"
+
+}
+
+
+
 int main()
 {
     cout << "Hello World!\n";
