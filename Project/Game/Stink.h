@@ -1,5 +1,10 @@
 #pragma once
 class Stink : Card {
 public:
-	Stink() : Card(3, 5, 6, 7) {};
-};
+
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out);
+
+	
+}

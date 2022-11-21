@@ -2,8 +2,12 @@
 class Chilli : Card
 {
 public:
-	Chilli() : Card(3,6,8,9){};
 
-private:
 
-};
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out);
+
+}
+
+}

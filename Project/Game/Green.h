@@ -1,5 +1,7 @@
 #pragma once
 class Green : Card {
 public :
-	Green() : Card(3, 5, 6, 7) {};
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out);
 };

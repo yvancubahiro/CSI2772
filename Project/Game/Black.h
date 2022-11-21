@@ -2,6 +2,8 @@
 class Black : Card {
 	
 public :
-	Black(): Card(2,4,5,6) {}
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out);
 };
 

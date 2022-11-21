@@ -2,8 +2,8 @@
 class Garden : Card
 {
 public:
-	Garden() : Card(0, 2, 3, 0){};
-
-private:
+	int getCardsPerCoin(int coins);
+	string getName();
+	void print(ostream& out);
 
 };
