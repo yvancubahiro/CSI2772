@@ -31,15 +31,10 @@ using namespace std;
 int main()
 {
     cout << "Hello Worldi!\n";
-    
-    Hand h;
-    h += new Black();
-    h += new Soy();
-    h += new Stink();
-    cout << h.play()->getName() << endl;
-    cout << h.play()->getName() << endl;
-    cout << h.play()->getName() << endl;
-    cout << h.top();
+    string name = "Yvan";
+    Player p = Player(name);
+    cout << p.getName();
+
     return 0;
 }
 
