@@ -28,3 +28,5 @@ string Green::getName() {
     return "Green";
 
 };
+
+void Green::print(ostream& out) {}

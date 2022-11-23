@@ -29,3 +29,5 @@ string Red::getName() {
 
 };
 
+void Red::print(ostream& out) {}
+

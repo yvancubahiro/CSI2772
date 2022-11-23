@@ -23,13 +23,19 @@ using namespace std;
 #include "Red.h"
 #include "Soy.h"
 #include "Stink.h"
+#include "CardFactory.h"
 
 
 
 
 int main()
 {
-    cout << "Hello World!\n";
+    cout << "Hello Worldi!\n";
+    CardFactory cf;
+    Deck dk = cf.getDeck();
+    cout << dk.draw()->getName();
+    cout << dk.back()->getName();
+    
     return 0;
 }
 

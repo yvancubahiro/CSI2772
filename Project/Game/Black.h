@@ -26,9 +26,10 @@ int Black::getCardsPerCoin(int coins) {
 };
 
 
-
 string Black::getName() {
     return "Black";
 
 };
+
+void Black::print(ostream& out) {}
 

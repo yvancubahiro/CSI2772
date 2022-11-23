@@ -1,2 +1,3 @@
 C:\Users\audry\OneDrive\Bureau\CSI2772\Github\CSI2772\Project\Game\x64\Debug\Game.exe
 C:\Users\yvanc\CSI2772\Project\Game\x64\Debug\Game.exe
+C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\x64\Debug\Game.exe

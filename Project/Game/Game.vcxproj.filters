@@ -77,5 +77,8 @@
     <ClInclude Include="Garden.h">
       <Filter>Header Files\CardsType</Filter>
     </ClInclude>
+    <ClInclude Include="CardFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

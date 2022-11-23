@@ -1,11 +1,2 @@
 ﻿  Game.cpp
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(12,21): error C3861: 'Blue': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(15,21): error C3861: 'Chili': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(18,21): error C3861: 'Stink': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(21,21): error C3861: 'Green': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(24,21): error C3861: 'Soy': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(27,21): error C3861: 'Black': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(30,21): error C3861: 'Red': identifier not found
-C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\Deck.h(33,21): error C3861: 'Garden': identifier not found
-  Source.cpp
-  Generating Code...
+  Game.vcxproj -> C:\Users\yvanc\source\repos\CSI2772\Project\Game\x64\Debug\Game.exe

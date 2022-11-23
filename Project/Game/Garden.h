@@ -25,3 +25,7 @@ string Garden::getName() {
     return "Garden";
 
 }
+
+void Garden::print(ostream& out) {
+
+}

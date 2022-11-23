@@ -34,3 +34,5 @@ int Chili::getCardsPerCoin(int coins) {
 string Chili::getName() {
     return "Chilli";
 }
+
+void Chili::print(ostream& out) {}

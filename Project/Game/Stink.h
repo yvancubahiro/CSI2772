@@ -31,3 +31,5 @@ string Stink::getName() {
     return "Stink";
 
 };
+
+void Stink::print(ostream& out) {}

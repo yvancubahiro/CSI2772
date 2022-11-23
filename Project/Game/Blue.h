@@ -32,3 +32,5 @@ string Blue::getName() {
     return "Blue";
 
 }
+
+void Blue::print(ostream& out){}

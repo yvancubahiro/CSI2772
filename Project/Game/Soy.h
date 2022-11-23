@@ -30,3 +30,5 @@ string Soy::getName() {
     return "Soy";
 
 };
+
+void Soy::print(ostream& out) {}
