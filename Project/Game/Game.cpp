@@ -31,10 +31,15 @@ using namespace std;
 int main()
 {
     cout << "Hello Worldi!\n";
-    CardFactory cf;
-    Deck dk = cf.getDeck();
-    cout << dk.draw()->getName();
-    cout << dk.back()->getName();
+    Chain<Stink> chain;
+    chain += new Stink();
+    chain += new Stink();
+    chain += new Stink();
+    chain += new Black();
+    chain += new Stink();
+    chain += new Stink();
+    chain += new Stink();
+    cout << chain.sell();
     
     return 0;
 }
