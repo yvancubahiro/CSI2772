@@ -1,2 +1,3 @@
 ﻿  Game.cpp
+C:\Users\yvanc\Source\Repos\CSI2772\Project\Game\TradeArea.h(49,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   Game.vcxproj -> C:\Users\yvanc\source\repos\CSI2772\Project\Game\x64\Debug\Game.exe

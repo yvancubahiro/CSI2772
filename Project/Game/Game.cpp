@@ -31,15 +31,16 @@ using namespace std;
 int main()
 {
     cout << "Hello Worldi!\n";
-    DiscardPile dp;
-    dp += new Black();
-    dp += new Stink();
-    
-    cout << dp.top()->getName() << endl;
-    cout << dp.pickUp()->getName() << endl;
-    cout << dp.top()->getName() << endl;
-    cout << dp.pickUp()->getName() << endl;
-    cout << dp.top()->getName() << endl;
+    TradeArea ta;
+    cout << ta.legal(new Black());
+    ta += new Stink();
+    ta += new Black();
+    ta += new Blue();
+
+    cout << ta.legal(new Soy());
+    ta += new Soy();
+    cout << ta.numCards();
+
     
     
     return 0;
