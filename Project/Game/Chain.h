@@ -5,14 +5,14 @@
 #include "CardFactory.h"
 using namespace std;
 
-class Chain_Base{
+class Chain_Base : public vector<Card*>{
 public :
 	virtual int sell() = 0;
 	int numOfCards = 0;
 	string type;
 };
 
-template <class T> class Chain: public Chain_Base, public vector<Card*>{
+template <class T> class Chain: public Chain_Base{
 public :
 	Chain<T>& operator+=(Card*);
 	ostream& operator << (ostream&);
@@ -77,20 +77,17 @@ template <class T> Chain<T> ::Chain() {
 
 
 template <class T>  Chain<T> ::Chain(istream& input,const CardFactory* cardFactory) {
-	
+	char line[1026];
+	input.getline(line, 1026);
+	int index = 0;
 
-	string linestr;
-	string name;
-	char* line;
-	char token;
-	input.getline( linestr, 1026);
-	line = linestr.c_str();
+	while (line[index] != ' ') {
+		this->type += line[index++];
+	}
+	index++;
 
-	token = strtok(line, " ");
-
-	while (token != NULL) {
-		this += cardFactory->getCard(token);
-		token = strtok(line, " ");
+	while (line[index] != NULL) {
+		this->push_back(cardFactory->getCard(line[index++]));
 	}
 
 

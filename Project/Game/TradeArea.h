@@ -14,7 +14,7 @@ public:
 	Card* trade(string);
 	int numCards();
 	friend ostream& operator << (ostream&, TradeArea);
-	TradeArea(istream&, CardFactory*);
+	TradeArea(istream&, const CardFactory*);
 };
 
 TradeArea& TradeArea :: operator+=(Card* card) {
@@ -53,7 +53,7 @@ Card* TradeArea::trade(string cardName) {
 };
 
 int TradeArea::numCards() {
-	return cards.size();
+	return (int) cards.size();
 };
 
 ostream& operator << (ostream& output, TradeArea tradeArea) {
@@ -63,7 +63,7 @@ ostream& operator << (ostream& output, TradeArea tradeArea) {
 	return output;
 };
 
-TradeArea :: TradeArea(istream& input, CardFactory* cardFactory) {
+TradeArea :: TradeArea(istream& input, const CardFactory* cardFactory) {
 	char line[1026];
 	char card;
 	int index = 0;

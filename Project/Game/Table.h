@@ -4,6 +4,7 @@
 #include "DiscardPile.h"
 #include "TradeArea.h"
 #include "CardFactory.h"
+#include <iostream>
 
 class Table {
 private :
@@ -17,6 +18,8 @@ public :
 	bool win(std::string&);
 	void printHand(bool);
 	Table(string, string);
+	Table(istream&, const CardFactory*);
+	friend ostream& operator << (ostream&, Table);
 };
 
 bool Table::win(string & name) {
@@ -52,3 +55,18 @@ Table::Table(string name1, string name2) {
 	deck = new Deck(cardFactory->getDeck());
 	discardPile = new DiscardPile();
 }
+
+Table :: Table(istream& input, const CardFactory* cardFactory) {
+	this->player1 = new Player(input, cardFactory);
+	this->player2 = new Player(input, cardFactory);
+	this->discardPile = new DiscardPile(input, cardFactory);
+	this->tradeArea = new TradeArea(input, cardFactory);
+};
+
+ostream& operator << (ostream& output, Table table) {
+	output << table.player1 << endl;
+	output << table.player2 << endl;
+	output << table.discardPile << endl;
+	output << table.tradeArea << endl;
+	return output;
+};

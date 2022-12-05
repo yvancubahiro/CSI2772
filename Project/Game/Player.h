@@ -2,6 +2,8 @@
 #include "Chain.h"
 #include "Hand.h"
 #include "CardFactory.h"
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -24,7 +26,7 @@ public :
 	Hand* hand;
 	void printHand(std::ostream&, bool);
 	friend ostream& operator << (ostream&, Player);
-	Player(istream&, CardFactory*);
+	Player(istream&, const CardFactory*);
 };
 
 void Player::printHand(ostream& output, bool showAll) {
@@ -38,8 +40,17 @@ void Player::printHand(ostream& output, bool showAll) {
 	}
 }
 
+/*
+Le ficchier contiendra :
+
+	Dave 3 RB
+	Red RRRR
+	Blue B
+
+*/
+
 ostream& operator << (ostream& output, Player player) {
-	output << player.name << " " << player.getNumCoins() << " coins" << endl;
+	output << player.name << " " << player.getNumCoins() << " " << player.chain1->type.at(0) << player.chain2->type.at(0) << player.chain3->type.at(0) << endl;
 	output << player.chain1 << endl;
 	output << player.chain2 << endl;
 	output << player.chain3 << endl;
@@ -47,30 +58,76 @@ ostream& operator << (ostream& output, Player player) {
 	return output;
 };
 
-Player :: Player(istream& input, CardFactory* cardFactory) {
-	string name = "";
+Player :: Player(istream& input, const CardFactory* cardFactory) {
 	char line[1026];
-	char card;
 	int index = 0;
 	input.getline(line, 1026);
-	card = line[index];
 
 	while (line[index] != ' ') {
-		this->name += line[index];
-	}
-
-	index = 0;
-	input.getline(line, 1026);
-
-	while (line[index] != ' ') {
-		this->chain1->type += line[index];
+		this->name += line[index++];
 	}
 	index++;
-	while (line[index] != NULL) {
-		//this->chain1 += cardFactory->getCard(line[index]);
-	}
-	
 
+
+	switch (line[index++])
+	{
+	case 'B': this->chain1 = new Chain<Black>(input, cardFactory);
+		break;
+	case 'b':this->chain1 = new Chain<Blue>(input, cardFactory);
+		break;
+	case 'C':this->chain1 = new Chain<Chili>(input, cardFactory);
+		break;
+	case 'G':this->chain1 = new Chain<Garden>(input, cardFactory);
+		break;
+	case 'g':this->chain1 = new Chain<Green>(input, cardFactory);
+		break;
+	case 'R':this->chain1 = new Chain<Red>(input, cardFactory);
+		break;
+	case 'S':this->chain1 = new Chain<Soy>(input, cardFactory);
+		break;
+	case 's':this->chain1 = new Chain<Stink>(input, cardFactory);
+		break;
+	}
+
+	switch (line[index++])
+	{
+	case 'B': this->chain2 = new Chain<Black>(input, cardFactory);
+		break;
+	case 'b':this->chain2 = new Chain<Blue>(input, cardFactory);
+		break;
+	case 'C':this->chain2 = new Chain<Chili>(input, cardFactory);
+		break;
+	case 'G':this->chain2 = new Chain<Garden>(input, cardFactory);
+		break;
+	case 'g':this->chain2 = new Chain<Green>(input, cardFactory);
+		break;
+	case 'R':this->chain2 = new Chain<Red>(input, cardFactory);
+		break;
+	case 'S':this->chain2 = new Chain<Soy>(input, cardFactory);
+		break;
+	case 's':this->chain2 = new Chain<Stink>(input, cardFactory);
+		break;
+	}
+
+	switch (line[index++])
+	{
+	case 'B': this->chain3 = new Chain<Black>(input, cardFactory);
+		break;
+	case 'b':this->chain3 = new Chain<Blue>(input, cardFactory);
+		break;
+	case 'C':this->chain3 = new Chain<Chili>(input, cardFactory);
+		break;
+	case 'G':this->chain3 = new Chain<Garden>(input, cardFactory);
+		break;
+	case 'g':this->chain3 = new Chain<Green>(input, cardFactory);
+		break;
+	case 'R':this->chain3 = new Chain<Red>(input, cardFactory);
+		break;
+	case 'S':this->chain3 = new Chain<Soy>(input, cardFactory);
+		break;
+	case 's':this->chain3 = new Chain<Stink>(input, cardFactory);
+		break;
+	}
 };
 
 Player :: Player(string& name) {

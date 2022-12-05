@@ -73,6 +73,7 @@ Deck CardFactory :: getDeck() {
 			return card;
 		}
 	}
+	return nullptr;
 }
 
 
