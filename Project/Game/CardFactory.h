@@ -1,5 +1,16 @@
 #pragma once
 #include <vector>
+#include "Deck.h"
+#include "Black.h"
+#include "Blue.h"
+#include "Chili.h"
+#include "Garden.h"
+#include "Green.h"
+#include "Red.h"
+#include "Soy.h"
+#include "Stink.h"
+#include <random>
+
 
 class CardFactory{
 public :
@@ -7,6 +18,7 @@ public :
 	CardFactory();
 	static CardFactory* getFactory();
 	Deck getDeck();
+	Card* getCard(char) const;
 };
 
 CardFactory::CardFactory() {
@@ -53,6 +65,14 @@ CardFactory* CardFactory::getFactory()
 
 Deck CardFactory :: getDeck() {
 	return cards;
+}
+
+ Card* CardFactory::getCard(char c) const{
+	for (Card* card : cards) {
+		if (card->getName().at(0) == c) {
+			return card;
+		}
+	}
 }
 
 

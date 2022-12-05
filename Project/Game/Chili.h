@@ -1,4 +1,5 @@
 #pragma once
+#include "Card.h"
 class Chili : public Card
 {
 public:
@@ -35,4 +36,4 @@ string Chili::getName() {
     return "Chilli";
 }
 
-void Chili::print(ostream& out) {}
+void Chili::print(ostream& output) { output << 'C'; }

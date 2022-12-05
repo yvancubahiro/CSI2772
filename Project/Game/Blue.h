@@ -1,4 +1,5 @@
 #pragma once
+#include "Card.h"
 class Blue : public Card
 {
 public:
@@ -29,8 +30,8 @@ int Blue::getCardsPerCoin(int coins) {
 };
 
 string Blue::getName() {
-    return "Blue";
+    return "blue";
 
 }
 
-void Blue::print(ostream& out){}
+void Blue::print(ostream& output) { output << 'b'; }
