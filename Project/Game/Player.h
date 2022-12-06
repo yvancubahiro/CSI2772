@@ -27,6 +27,7 @@ public :
 	void printHand(std::ostream&, bool);
 	friend ostream& operator << (ostream&, Player);
 	Player(istream&, const CardFactory*);
+	void display();
 };
 
 void Player::printHand(ostream& output, bool showAll) {
@@ -41,7 +42,7 @@ void Player::printHand(ostream& output, bool showAll) {
 }
 
 /*
-Le ficchier contiendra :
+Le fichier contiendra :
 
 	Dave 3 RB
 	Red RRRR
@@ -193,6 +194,23 @@ void Player :: buyThirdChain() {
 		cout << "already have 3 chains !";
 	}
 };
+
+void Player :: display() {
+
+	cout << "Player 1 : " << name << endl;
+	cout << "Number of coins : " << getNumCoins() << endl;
+	hand->display();
+	cout << " Chain 1 : ";
+	chain1->display();
+	cout << "Chain 2 : ";
+	chain2->display();
+
+	if (getNumChains() == 3) {
+		cout << "Chain 3 :";
+		chain3->display();
+	}
+
+}
 
 
 

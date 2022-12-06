@@ -3,37 +3,34 @@
 #include <fstream>
 #include <iomanip>
 #include <istream>
+#include <vector>
 #include "Card.h"
-#include "CardFactory.h"
+
 using namespace std;
 
 class CardFactory;
 
 class Deck : public vector<Card*> {
-	
-public :
+
+public:
 	Card* draw();
-	Deck(){};
-	friend ostream & operator << (ostream&, const Deck*);
+	Deck() {};
+	friend ostream& operator << (ostream&, const Deck*);
 	Deck(istream&, CardFactory*);
+	void display();
 };
 
 Deck::Deck(istream& input, CardFactory* cardFactory) {
-	/*
-	string linestr;
-	string name;
-	char* line;
-	char token;
-	input.getline(linestr, 1026);
-	line = linestr.c_str();
+	char line[1026];
+	int index = 0;
+	input.getline(line, 1026);
 
-	token = strtok(line, " ");
-
-	while (token != NULL) {
-		this += cardFactory->getCard(token);
-		token = strtok(line, " ");
-	}*/
+	while (line[index] != NULL) {
+		this->push_back(cardFactory->getCard(line[index++]));
+	}
 };
+
+
 
 	
 
@@ -54,10 +51,16 @@ Card* Deck::draw() {
 ostream& operator << (ostream& output,const  Deck *deck) {
 	for (Card* card : *deck) {
 		card->print(output);
-		output  << " ";
 	}
 	return output;
 };
+
+void Deck::display() {
+	for (Card* card : *this) {
+		cout << card->getName() << " ";
+	}
+	cout << endl;
+}
 
 
 

@@ -26,25 +26,98 @@ using namespace std;
 #include "CardFactory.h"
 
 
+Table *table;
+char answer;
+CardFactory* cardFactory;
+ifstream inputData("data.txt");
+ofstream outputData("data.txt");
 
+void newGame();
+void saveGame();
+void resumeGame();
+void  runGame();
 
 int main()
 {
-    cout << "Hello Worldi!\n";
-    string name = "Yvan";
-    Player p = Player(name);
-    cout << p.getName();
+    cardFactory = new CardFactory();
 
-    return 0;
+    // ask user if wants to resume a game or start a new one
+
+    cout << "Start a new game (n) or resume a paused game (r) : ";
+    cin >> answer;
+    while (answer != 'n' && answer != 'r') {
+        cout << "Invalid answer, please try again : new game (n), resume game (r) : ";
+        cin >> answer;
+    }
+
+    if (answer == 'r') {
+        cout << "Resuming paused game ...." << endl;
+        resumeGame();
+    }
+    else {
+        cout << "Starting a new game..." << endl;
+        newGame();
+    }
+
+
+};
+
+void newGame() {
+
+    string name1, name2;
+    cout << "Enter Player 1 name : ";
+    cin >> name1;
+    cout << "Enter Player 2 name : ";
+    cin >> name2;
+    table = new Table(name1, name2);
+    
+    runGame();
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void resumeGame() {
+    
+    if (inputData.is_open()) {
+        table = new Table(inputData, cardFactory);
+    }
+    else {
+        cout << "Unable to resume game...starting a new one :" << endl;
+        newGame();
+    }
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    runGame();
+}
+
+void saveGame() {
+    if (outputData.is_open()) {
+        outputData << table;
+    }
+}
+
+Card* topCard;
+
+void runGame() { // IMPLEMENTATION DU PSEUDO CODE
+    
+
+    while (!table->deck->empty()) { // While there are still cards on the Deck
+
+        cout << "Pause game (p) or continue (c) : ";
+        cin >> answer;
+        while (answer != 'p' && answer != 'c') {
+            cout << "Invalid answer please try again : pause (p), continue (c) :";
+            cin >> answer;
+        }
+
+        if (answer == 'p') { // save game to file and exit
+            saveGame();
+            exit(0);
+        }
+
+        table->display(); // Display Table
+
+
+
+    }
+
+}
+

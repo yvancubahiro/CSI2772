@@ -5,21 +5,21 @@
 #include "TradeArea.h"
 #include "CardFactory.h"
 #include <iostream>
+using namespace std;
 
 class Table {
-private :
+public :
 	Player * player1 , * player2;
 	Deck* deck;
 	DiscardPile* discardPile;
 	TradeArea* tradeArea;
 	CardFactory* cardFactory;
-	
-public :
 	bool win(std::string&);
 	void printHand(bool);
 	Table(string, string);
 	Table(istream&, const CardFactory*);
 	friend ostream& operator << (ostream&, Table);
+	void display();
 };
 
 bool Table::win(string & name) {
@@ -70,3 +70,18 @@ ostream& operator << (ostream& output, Table table) {
 	output << table.tradeArea << endl;
 	return output;
 };
+
+void Table::display() {
+
+	cout << "-------------- PLAYERS -------------" << endl;
+	player1->display();
+	player2->display();
+	cout << "--------------- DECK ---------------" << endl;
+	deck->display();
+	cout << "------------ TRADE AREA ------------" << endl;
+	tradeArea->display();
+	cout << "----------- DISCARD PILE -----------" << endl;
+	discardPile->display();
+	cout << "------------------------------------" << endl << endl;
+
+}

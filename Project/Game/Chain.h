@@ -10,6 +10,7 @@ public :
 	virtual int sell() = 0;
 	int numOfCards = 0;
 	string type;
+	void display();
 };
 
 template <class T> class Chain: public Chain_Base{
@@ -19,7 +20,6 @@ public :
 	int sell();
 	Chain(istream&,const CardFactory*);
 	Chain();
-
 };
 
 template <class T> Chain<T>& Chain<T>:: operator +=(Card* card) {
@@ -89,9 +89,10 @@ template <class T>  Chain<T> ::Chain(istream& input,const CardFactory* cardFacto
 	while (line[index] != NULL) {
 		this->push_back(cardFactory->getCard(line[index++]));
 	}
-
-
 };
 
+void Chain_Base :: display() {
+	cout << numOfCards << " " << type << endl;
+}
 
 

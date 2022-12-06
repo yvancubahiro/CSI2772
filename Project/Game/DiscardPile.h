@@ -15,6 +15,7 @@ public:
 	Card* top();
 	void print(std::ostream&);
 	friend ostream& operator << (ostream&, DiscardPile);
+	void display();
 };
 
 
@@ -73,5 +74,12 @@ void DiscardPile::print(std::ostream& output) {
 		card->print(output);
 	}
 };
+
+void DiscardPile ::display() {
+	for (Card* card : cards) {
+		cout << card->getName() << " ";
+	}
+	cout << endl;
+}
 
 

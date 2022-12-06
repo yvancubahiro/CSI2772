@@ -11,6 +11,7 @@ public :
 	friend ostream& operator << (ostream&, Hand);
 	Hand(istream&, CardFactory*);
 	Hand() {};
+	void display();
 };
 
 Hand& Hand :: operator+=(Card* card) {
@@ -77,4 +78,12 @@ Hand :: Hand(istream& input, CardFactory* cardFactory) {
 		card = line[++index];
 	}
 };
+
+void Hand::display() {
+	cout << "Hnad : ";
+	for (Card* card : *this) {
+		cout << card->getName() << " ";
+	}
+	cout << endl;
+}
 

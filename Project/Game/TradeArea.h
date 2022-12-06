@@ -15,6 +15,7 @@ public:
 	int numCards();
 	friend ostream& operator << (ostream&, TradeArea);
 	TradeArea(istream&, const CardFactory*);
+	void display();
 };
 
 TradeArea& TradeArea :: operator+=(Card* card) {
@@ -75,3 +76,10 @@ TradeArea :: TradeArea(istream& input, const CardFactory* cardFactory) {
 		card = line[++index];
 	}
 };
+
+void TradeArea::display() {
+	for (Card* card : cards) {
+		cout << card->getName() << " ";
+	}
+	cout << endl;
+}
