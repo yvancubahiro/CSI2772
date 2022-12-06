@@ -12,6 +12,7 @@ public :
 	Hand(istream&, CardFactory*);
 	Hand() {};
 	void display();
+	Card* pickACard(CardFactory * cardFacctory);
 };
 
 Hand& Hand :: operator+=(Card* card) {
@@ -80,10 +81,44 @@ Hand :: Hand(istream& input, CardFactory* cardFactory) {
 };
 
 void Hand::display() {
-	cout << "Hnad : ";
+	cout << "Hand : ";
 	for (Card* card : *this) {
 		cout << card->getName() << " ";
 	}
 	cout << endl;
+}
+
+Card* Hand::pickACard(CardFactory * cardFactory) {
+	char answer;
+	bool matched = false;
+	Card* card = nullptr;
+	int index = 0;
+
+	cout << "Choose a card between: ";
+	for (Card* card : *this) {
+		cout << card->getName() << " " << (card->getName().at(0)) << " , ";
+	}
+	cout << " : ";
+	cin >> answer;
+
+	do {
+		for (Card* card : *this) {
+			index++;
+			if (card->getName().at(0) == answer) {
+				
+				this->erase(std::next(this->begin(), index - 1), std::next(this->begin(), index + 1));
+
+				card = cardFactory->getCard(answer);
+				matched = true;
+				break;
+			}
+		}
+
+		cout << "The picked card is not in hand try another card : ";
+		cin >> answer;
+
+	} while (!matched);
+
+	return card;
 }
 

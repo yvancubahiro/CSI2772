@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "Card.h"
-#include "CardFactory.h"
+#include "CardFactoryAndDeck.h"
 using namespace std;
 
 class Chain_Base : public vector<Card*>{
@@ -53,6 +53,7 @@ template <class T> int Chain<T> :: sell() {
 		response = 0;
 	}
 
+	this->clear();
 	numOfCards = 0;
 	return response;
 }

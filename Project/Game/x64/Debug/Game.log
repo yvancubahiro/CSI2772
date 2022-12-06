@@ -1,3 +1,3 @@
 ﻿  Game.cpp
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Deck.h(29,30): error C2027: use of undefined type 'CardFactory'
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Deck.h(11): message : see declaration of 'CardFactory'
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\TradeArea.h(99,7): warning C4101: 'answer': unreferenced local variable
+  Game.vcxproj -> C:\Users\yvanc\source\repos\CSI2772\Project\Game\x64\Debug\Game.exe

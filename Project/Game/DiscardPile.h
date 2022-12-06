@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "Card.h"
-#include "CardFactory.h"
+#include "CardFactoryAndDeck.h"
 using namespace std;
 
 class DiscardPile {
@@ -24,6 +24,9 @@ DiscardPile& DiscardPile :: operator+=(Card* card) {
 	return *this;
 };
 
+/*
+* Returns card at the top of the discard pile
+*/
 Card* DiscardPile::pickUp() {
 	Card* card;
 	if (cards.empty()) {

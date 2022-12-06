@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "Card.h"
-#include "CardFactory.h"
+#include "CardFactoryAndDeck.h"
 #include <iostream>
 
 using namespace std;
@@ -16,6 +16,8 @@ public:
 	friend ostream& operator << (ostream&, TradeArea);
 	TradeArea(istream&, const CardFactory*);
 	void display();
+	bool contains(Card*);
+	void remove(Card* card);
 };
 
 TradeArea& TradeArea :: operator+=(Card* card) {
@@ -82,4 +84,30 @@ void TradeArea::display() {
 		cout << card->getName() << " ";
 	}
 	cout << endl;
+}
+
+bool TradeArea :: contains(Card* card) {
+	for (Card* tradeAreaCard : this->cards) {
+		if (tradeAreaCard->getName() == card->getName()) {
+			return true;
+		}
+	}
+	return true;
+}
+
+void TradeArea::remove(Card* card2) {
+	char answer;
+	bool matched = false;
+	Card* card = nullptr;
+	int index = 0;
+
+
+	for (Card* card : this->cards) {
+		index++;
+		if (card->getName() == card2->getName()) {
+
+			this->cards.erase(std::next(this->cards.begin(), index - 1), std::next(this->cards.begin(), index + 1));
+			break;
+		}
+	}
 }

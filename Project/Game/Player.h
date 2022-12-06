@@ -1,7 +1,7 @@
 #pragma once
 #include "Chain.h"
 #include "Hand.h"
-#include "CardFactory.h"
+#include "CardFactoryAndDeck.h"
 #include <iostream>
 #include <vector>
 
@@ -28,6 +28,8 @@ public :
 	friend ostream& operator << (ostream&, Player);
 	Player(istream&, const CardFactory*);
 	void display();
+	bool addCard(Card* card);
+	void play();
 };
 
 void Player::printHand(ostream& output, bool showAll) {
@@ -209,8 +211,56 @@ void Player :: display() {
 		cout << "Chain 3 :";
 		chain3->display();
 	}
-
 }
 
+bool Player::addCard(Card * card) {
+	if (chain1->type == card->getName() || chain1->empty()) {
+		chain1->push_back(card);
+	}
+	else if (chain2->type == card->getName() || chain2->empty()) {
+		chain2->push_back(card);
+	}
+	else if (this->getNumChains() == 3 && (chain3->type == card->getName() || chain3->empty())) {
+		chain3->push_back(card);
+	}
+	else {
+		return false;
+	}
+	return true;
+}
+
+void Player::play() {
+	Card* card = hand->play();
+	bool cardAdded = addCard(card);
+	char answer;
+
+	if (!cardAdded) {
+		
+		if (numChains == 3) {
+			cout << "Choose a chain to sell between chain 1 (1), chain 2 (2) or chain 3 (3) : ";
+			cin >> answer;
+			while (answer != '1' && answer != '2' && answer != '3') {
+				cout << "Invalid choice chain 1 (1), chain 2 (2) or chain 3 (3) : ";
+				cin >> answer;
+			}
+
+			if (answer == '1') {
+				chain1->sell();
+				chain1->push_back(card);
+				cout << " Chain 1 sold and put " << card->getName() << " in it.";
+			}
+			else if (answer == '2') {
+				chain2->sell();
+				chain2->push_back(card);
+				cout << " Chain 2 sold and put " << card->getName() << " in it.";
+			}
+			else if (answer == '3') {
+				chain3->sell();
+				chain3->push_back(card);
+				cout << " Chain 3 sold and put " << card->getName() << " in it.";
+			}
+		}
+	}
+}
 
 

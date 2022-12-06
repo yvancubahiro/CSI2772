@@ -134,11 +134,9 @@
     <ClInclude Include="Black.h" />
     <ClInclude Include="Blue.h" />
     <ClInclude Include="Card.h" />
-    <ClInclude Include="CardFactory.h" />
+    <ClInclude Include="CardFactoryAndDeck.h" />
     <ClInclude Include="Chain.h" />
     <ClInclude Include="Chili.h" />
-    <ClInclude Include="Coins.h" />
-    <ClInclude Include="Deck.h" />
     <ClInclude Include="DiscardPile.h" />
     <ClInclude Include="Garden.h" />
     <ClInclude Include="Green.h" />
