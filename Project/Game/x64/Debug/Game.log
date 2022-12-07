@@ -1,8 +1,9 @@
 ﻿  Game.cpp
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(344,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(348,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(352,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(356,20): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(387,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(391,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(395,22): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(399,20): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\yvanc\source\repos\CSI2772\Project\Game\TradeArea.h(102,7): warning C4101: 'answer': unreferenced local variable
-C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(279): warning C4715: 'Player::createChain': not all control paths return a value
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Game.cpp(213,27): warning C4101: 'ex': unreferenced local variable
+C:\Users\yvanc\source\repos\CSI2772\Project\Game\Player.h(322): warning C4715: 'Player::createChain': not all control paths return a value
   Game.vcxproj -> C:\Users\yvanc\source\repos\CSI2772\Project\Game\x64\Debug\Game.exe

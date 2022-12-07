@@ -14,7 +14,7 @@ public:
 	Card* pickUp();
 	Card* top();
 	void print(std::ostream&);
-	friend ostream& operator << (ostream&, DiscardPile);
+	friend ostream& operator << (ostream&, DiscardPile&);
 	void display();
 };
 
@@ -49,9 +49,15 @@ Card* DiscardPile::top() {
 	}
 };
 
-ostream& operator << (ostream& output, DiscardPile discardPile) {
+ostream& operator << (ostream& output, DiscardPile& discardPile) {
 	if (!discardPile.cards.empty()) {
-		output << discardPile.top();
+		for (Card* card : discardPile.cards) {
+			card->print(output);
+		}
+		output << '\n';
+	}
+	else {
+		output << '\n';
 	}
 	return output;
 };

@@ -30,23 +30,28 @@ class Deck : public vector<Card*> {
 public:
 	Card* draw();
 	Deck() {};
-	friend ostream& operator << (ostream&, const Deck*);
+	friend ostream& operator << (ostream&, const Deck&);
 	Deck(istream&, CardFactory*);
 	void display();
 	Card* pick();
 };
 
 Card* Deck :: pick() {
-	Card* card;
-	if (!this->empty()) {
-		card = this->back();
-		this->pop_back();
+	if (this != nullptr) {
+		Card* card;
+		if (!this->empty()) {
+			card = this->back();
+			this->pop_back();
+		}
+		else {
+			cout << "Deck is empty !";
+			card = nullptr;
+		}
+		return card;
 	}
 	else {
-		cout << "Deck is empty !";
-		card = nullptr;
+		return nullptr;
 	}
-	return card;
 }
 
 Card* Deck::draw() {
@@ -63,10 +68,11 @@ Card* Deck::draw() {
 	}
 };
 
-ostream& operator << (ostream& output, const  Deck* deck) {
-	for (Card* card : *deck) {
+ostream& operator << (ostream& output, const  Deck& deck) {
+	for (Card* card : deck) {
 		card->print(output);
 	}
+	output << '\n';
 	return output;
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Card.h"
+#include "CardFactoryAndDeck.h"
 
 class Hand: public vector<Card*>{
 public :
@@ -9,10 +10,10 @@ public :
 	Card* operator[](int);
 	string printCards();
 	friend ostream& operator << (ostream&, Hand);
-	Hand(istream&, CardFactory*);
+	Hand(istream&,const CardFactory*);
 	Hand() {};
 	void display();
-	Card* pickACard(CardFactory * cardFacctory);
+	Card* pickACard(CardFactory * cardFactory);
 	void remove(int);
 };
 
@@ -68,7 +69,7 @@ ostream& operator << (ostream& output, Hand hand) {
 	return output;
 };
 
-Hand :: Hand(istream& input, CardFactory* cardFactory) {
+Hand :: Hand(istream& input,const CardFactory* cardFactory) {
 	char line[1026];
 	char card;
 	int index = 0;

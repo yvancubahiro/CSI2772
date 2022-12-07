@@ -45,34 +45,66 @@ void Player::printHand(ostream& output, bool showAll) {
 	}
 }
 
-/*
-Le fichier contiendra :
 
-	Dave 3 RB
-	Red RRRR
-	Blue B
-
-*/
 
 ostream& operator << (ostream& output, Player player) {
-	output << player.name << " " << player.getNumCoins() << " " << player.chain1->type.at(0) << player.chain2->type.at(0) << player.chain3->type.at(0) << endl;
+	output << player.name <<  " " << player.numCoins << " " << player.numChains << '\n';
+	if (player.chain1 != nullptr) {
+		output << player.chain1->type << '\n' << player.chain1->type << " " << player.chain1->size() << '\n';
+	}
+	else {
+		output << "E" << '\n';
+	}
+	if (player.chain2 != nullptr) {
+		output << player.chain2->type << '\n' << player.chain2->type << " " << player.chain2->size() << '\n';
+	}
+	else {
+		output << "E" << '\n';
+	}
+	if (player.chain3 != nullptr) {
+		output << player.chain3->type << '\n' << player.chain3->type << " " << player.chain3->size() << '\n';
+	}
+	else {
+		output << "E" << '\n';
+	}
 
-	output << player.chain1 << endl;
-	output << player.chain2 << endl;
-	output << player.chain3 << endl;
+	if (player.hand != nullptr) {
+		output << *player.hand << '\n';
+	}
+	else {
+		output << 'E' << '\n';
+	}
+	
 
 	return output;
 };
 
 Player :: Player(istream& input, const CardFactory* cardFactory) {
-	char line[1026];
+	char line[30];
+	
+	string str = "";
 	int index = 0;
-	input.getline(line, 1026);
-
+	input.getline(line, 30, '\n');
+	cout << line;
 	while (line[index] != ' ') {
 		this->name += line[index++];
 	}
+
 	index++;
+	while (line[index] != ' ') {
+		str += line[index++];
+	}
+	this->numCoins = atoi(str.c_str());
+
+	index++;
+	str = "";
+
+	while (line[index] != ' ') {
+		str += line[index++];
+	}
+	this->numChains = atoi(str.c_str());
+
+	
 
 
 	switch (line[index++])
@@ -93,6 +125,7 @@ Player :: Player(istream& input, const CardFactory* cardFactory) {
 		break;
 	case 's':this->chain1 = new Chain<Stink>(input, cardFactory);
 		break;
+	case 'E':this->chain1 = nullptr;
 	}
 
 	switch (line[index++])
@@ -113,6 +146,7 @@ Player :: Player(istream& input, const CardFactory* cardFactory) {
 		break;
 	case 's':this->chain2 = new Chain<Stink>(input, cardFactory);
 		break;
+	case 'E':this->chain2 = nullptr;
 	}
 
 	switch (line[index++])
@@ -133,7 +167,10 @@ Player :: Player(istream& input, const CardFactory* cardFactory) {
 		break;
 	case 's':this->chain3 = new Chain<Stink>(input, cardFactory);
 		break;
+	case 'E':this->chain3 = nullptr;
 	}
+
+	this->hand = new Hand(input,cardFactory);
 };
 
 Player :: Player(string& name) {
@@ -181,7 +218,7 @@ Chain_Base* Player :: operator[](int i) {
 	else if (i == 1) {
 		chain = chain2;
 	}
-	else if (i == 2) {
+	else if (i == 2 && numChains == 3) {
 		chain = chain3;
 	}
 	else {
@@ -191,6 +228,12 @@ Chain_Base* Player :: operator[](int i) {
 	return chain;
 };
 
+class NotEnoughCoins : public exception {
+	virtual const char* what() const throw() {
+		return " Not enough coins for 3th chain";
+	}
+};
+
 void Player :: buyThirdChain() {
 	if (numChains == 2 && numCoins >=3) {
 		numChains++;
@@ -198,7 +241,7 @@ void Player :: buyThirdChain() {
 		cout << "Chain bought !" << endl;
 	}
 	else if (numChains == 2 && numCoins < 3) {
-		cout << "Not enough coins " << endl;
+		throw NotEnoughCoins();
 	}
 	else if (numChains == 3) {
 		cout << "already have 3 chains ! ";

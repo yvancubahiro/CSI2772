@@ -18,7 +18,7 @@ public :
 	void printHand(bool);
 	Table(string, string);
 	Table(istream&, const CardFactory*);
-	friend ostream& operator << (ostream&, Table);
+	friend ostream& operator<<(ostream&, Table&);
 	void display();
 };
 
@@ -58,17 +58,18 @@ Table::Table(string name1, string name2) {
 }
 
 Table :: Table(istream& input, const CardFactory* cardFactory) {
-	this->players[0] = new Player(input, cardFactory);
-	this->players[1] = new Player(input, cardFactory);
+	this->players.push_back(new Player(input, cardFactory));
+	this->players.push_back(new Player(input, cardFactory));
 	this->discardPile = new DiscardPile(input, cardFactory);
 	this->tradeArea = new TradeArea(input, cardFactory);
 };
 
-ostream& operator << (ostream& output, Table table) {
-	output << table.players[0] << endl;
-	output << table.players[1] << endl;
-	output << table.discardPile << endl;
-	output << table.tradeArea << endl;
+ostream& operator<<(ostream& output, Table& table) {
+	output << *table.players[0];
+	output << *table.players[1];
+	output << *table.discardPile;
+	output << *table.tradeArea;
+	output << *table.deck;
 	return output;
 };
 

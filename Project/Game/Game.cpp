@@ -29,8 +29,8 @@ using namespace std;
 Table *table;
 char answer;
 CardFactory* cardFactory;
-ifstream inputData("data.txt");
-ofstream outputData("data.txt");
+
+
 int player = false;
 Card* topCard;
 Card* pickedCard;
@@ -82,10 +82,10 @@ void newGame() {
 }
 
 void resumeGame() {
-    
+    ifstream inputData("data.txt");
     if (inputData.is_open()) {
         table = new Table(inputData, cardFactory);
-
+        inputData.close();
     }
     else {
         cout << "Unable to resume game...starting a new one :" << endl;
@@ -96,9 +96,10 @@ void resumeGame() {
 }
 
 void saveGame() {
-    
+    ofstream outputData("data.txt");
     if (outputData.is_open()) {
-        outputData << table;
+        outputData << *table;
+        outputData.close();
     }
 }
 
@@ -131,6 +132,7 @@ void executeRound() {
 
         while (answer != 'c' && answer != 'd') {
             cout << "Invalid answer, try again : add to chains (c), discard cards (d) : ";
+            cin >> answer;
         }
 
         if (answer == 'c') { // Place trade area cards into chains
@@ -205,7 +207,12 @@ void executeRound() {
     cin >> answer;
 
     if (answer == 'y') {
-        table->players[player]->buyThirdChain();
+        try {
+            table->players[player]->buyThirdChain();
+        }
+        catch (exception& ex) {
+            cout << "Not Engouh coins" << endl;
+        }
     }
 
 }

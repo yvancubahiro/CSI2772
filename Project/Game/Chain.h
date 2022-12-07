@@ -17,16 +17,22 @@ public :
 template <class T> class Chain: public Chain_Base{
 public :
 	Chain<T>& operator+=(Card*);
-	ostream& operator << (ostream&);
+	friend ostream& operator << (ostream&,Chain&);
 	int sell();
 	Chain(istream&,const CardFactory*);
 	Chain();
 };
 
+class IllegalType : public exception {
+	virtual const char* what() const throw() {
+		return " Card does not match chain type";
+	}
+};
+
 template <class T> Chain<T>& Chain<T>:: operator +=(Card* card) {
 	T card2;
 	if (card2.getName() != card->getName()) {
-		cout << "cannot add because cards type does not match";
+		throw IllegalType();
 	}
 	else {
 		this->push_back(card);
@@ -61,15 +67,17 @@ template <class T> int Chain<T> :: sell() {
 
 
 
-template <class T> ostream& Chain<T> :: operator << (ostream& output) {
-	output << this.type << " ";
+template <class T>ostream&  operator << (ostream& output, Chain<T>& chain) {
+	output << chain.type << " ";
 
-	for (auto card : this) {
+	for (auto card : chain) {
 		card.print(output);
-		output << " ";
 	}
 	return output;
 };
+
+
+
 
 
 template <class T> Chain<T> ::Chain() {
@@ -82,19 +90,23 @@ template <class T>  Chain<T> ::Chain(istream& input,const CardFactory* cardFacto
 	char line[1026];
 	input.getline(line, 1026);
 	int index = 0;
+	
 
 	while (line[index] != ' ') {
 		this->type += line[index++];
 	}
-	index++;
+	int no = line[++index];
 
-	while (line[index] != NULL) {
-		this->push_back(cardFactory->getCard(line[index++]));
+	for (int i = 0; i < no; i++) {
+		this->push_back(cardFactory->getCard(this->type.at(0)));
 	}
 };
 
 void Chain_Base :: display() {
 	cout << numOfCards << " " << type << endl;
 }
+
+
+
 
 
