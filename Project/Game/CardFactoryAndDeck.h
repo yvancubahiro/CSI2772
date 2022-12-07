@@ -92,6 +92,8 @@ public :
 
 CardFactory::CardFactory() {
 	
+	cards = new Deck();
+	
 	//creation de cartes
 	for (int i = 0; i < 20; i++) {
 		cards->push_back(new Blue());

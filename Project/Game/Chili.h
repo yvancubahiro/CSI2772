@@ -33,7 +33,7 @@ int Chili::getCardsPerCoin(int coins) {
 }
 
 string Chili::getName() {
-    return "Chilli";
+    return "Chili";
 }
 
 void Chili::print(ostream& output) { output << 'C'; }

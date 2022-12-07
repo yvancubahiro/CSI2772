@@ -30,7 +30,6 @@ DiscardPile& DiscardPile :: operator+=(Card* card) {
 Card* DiscardPile::pickUp() {
 	Card* card;
 	if (cards.empty()) {
-		cout << "the stack is empty";
 		card = nullptr;
 	}
 	else {
@@ -43,7 +42,6 @@ Card* DiscardPile::pickUp() {
 
 Card* DiscardPile::top() {
 	if (cards.empty()) {
-		cout << "the stack is empty";
 		return nullptr;
 	}
 	else {

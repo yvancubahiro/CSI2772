@@ -30,6 +30,8 @@ public :
 	void display();
 	bool addCard(Card* card);
 	void play();
+	Chain_Base* createChain( char);
+	int getNumOfCards();
 };
 
 void Player::printHand(ostream& output, bool showAll) {
@@ -54,6 +56,7 @@ Le fichier contiendra :
 
 ostream& operator << (ostream& output, Player player) {
 	output << player.name << " " << player.getNumCoins() << " " << player.chain1->type.at(0) << player.chain2->type.at(0) << player.chain3->type.at(0) << endl;
+
 	output << player.chain1 << endl;
 	output << player.chain2 << endl;
 	output << player.chain3 << endl;
@@ -189,78 +192,171 @@ Chain_Base* Player :: operator[](int i) {
 };
 
 void Player :: buyThirdChain() {
-	if (numChains == 2) {
+	if (numChains == 2 && numCoins >=3) {
 		numChains++;
+		numCoins -= 3;
+		cout << "Chain bought !" << endl;
+	}
+	else if (numChains == 2 && numCoins < 3) {
+		cout << "Not enough coins " << endl;
 	}
 	else if (numChains == 3) {
-		cout << "already have 3 chains !";
+		cout << "already have 3 chains ! ";
 	}
 };
 
 void Player :: display() {
 
-	cout << "Player 1 : " << name << endl;
+	cout << "Player's name : " << name << endl;
 	cout << "Number of coins : " << getNumCoins() << endl;
-	hand->display();
-	cout << " Chain 1 : ";
-	chain1->display();
-	cout << "Chain 2 : ";
-	chain2->display();
-
-	if (getNumChains() == 3) {
+	if (hand != nullptr) {
+		hand->display();
+	}
+	if (chain1 != nullptr) {
+		cout << " Chain 1 : ";
+		chain1->display();
+	}
+	if (chain2 != nullptr) {
+		cout << "Chain 2 : ";
+		chain2->display();
+	}
+	if (chain3 != nullptr && getNumChains() == 3) {
 		cout << "Chain 3 :";
 		chain3->display();
 	}
 }
 
 bool Player::addCard(Card * card) {
-	if (chain1->type == card->getName() || chain1->empty()) {
+
+
+	if (chain1 != nullptr && (chain1->type == card->getName() || chain1->empty())) {
 		chain1->push_back(card);
+		chain1->numOfCards++;
+		return true;
 	}
-	else if (chain2->type == card->getName() || chain2->empty()) {
+	else if (chain2 != nullptr && (chain2->type == card->getName() || chain2->empty())) {
 		chain2->push_back(card);
+		chain2->numOfCards++;
+		return true;
 	}
-	else if (this->getNumChains() == 3 && (chain3->type == card->getName() || chain3->empty())) {
+	else if (chain3 != nullptr && (this->getNumChains() == 3 && (chain3->type == card->getName() || chain3->empty()))) {
 		chain3->push_back(card);
+		chain3->numOfCards++;
+		return true;
+	}else if (chain1 == nullptr) {
+		chain1 = createChain(card->getName().at(0));
+		chain1->push_back(card);
+		chain1->numOfCards++;
+		return true;
+	}else if (chain2 == nullptr) {
+		chain2 = createChain(card->getName().at(0));
+		chain2->push_back(card);
+		chain2->numOfCards++;
+		return true;
+	}if (chain3 == nullptr && numChains == 3) {
+		chain3 = createChain(card->getName().at(0));
+		chain3->push_back(card);
+		chain3->numOfCards++;
+		return true;
 	}
-	else {
-		return false;
-	}
-	return true;
+
+	return false;
 }
+
+
+Chain_Base* Player::createChain(char cardFirstChar) {
+	switch (cardFirstChar)
+	{
+	case 'B': return new Chain<Black>();
+	case 'b':return new Chain<Blue>();
+	case 'C':return new Chain<Chili>();
+	case 'G':return new Chain<Garden>();
+	case 'g':return new Chain<Green>();
+	case 'R':return new Chain<Red>();
+	case 'S':return new Chain<Soy>();
+	case 's':return new Chain<Stink>();
+	}
+}
+
 
 void Player::play() {
 	Card* card = hand->play();
-	bool cardAdded = addCard(card);
-	char answer;
+	cout << name << " is playing : " << card->getName() << endl;
+	if (card != nullptr) {
+		bool cardAdded = addCard(card);
+		char answer;
+		int gain = 0;
 
-	if (!cardAdded) {
-		
-		if (numChains == 3) {
-			cout << "Choose a chain to sell between chain 1 (1), chain 2 (2) or chain 3 (3) : ";
-			cin >> answer;
-			while (answer != '1' && answer != '2' && answer != '3') {
-				cout << "Invalid choice chain 1 (1), chain 2 (2) or chain 3 (3) : ";
+		if (!cardAdded) {
+
+			if (numChains == 3) {
+				cout << "Choose a chain to sell between chain 1 (1), chain 2 (2) or chain 3 (3) : ";
 				cin >> answer;
-			}
+				while (answer != '1' && answer != '2' && answer != '3') {
+					cout << "Invalid choice chain 1 (1), chain 2 (2) or chain 3 (3) : ";
+					cin >> answer;
+				}
 
-			if (answer == '1') {
-				chain1->sell();
-				chain1->push_back(card);
-				cout << " Chain 1 sold and put " << card->getName() << " in it.";
+				if (answer == '1') {
+					gain = chain1->sell();
+					chain1->push_back(card);
+					cout << " Chain 1 sold and put " << card->getName() << " in it." << endl;
+				}
+				else if (answer == '2') {
+					gain = chain2->sell();
+					chain2->push_back(card);
+					cout << " Chain 2 sold and put " << card->getName() << " in it." << endl;
+				}
+				else if (answer == '3') {
+					gain = chain3->sell();
+					chain3->push_back(card);
+					cout << " Chain 3 sold and put " << card->getName() << " in it. " <<endl;
+				}
 			}
-			else if (answer == '2') {
-				chain2->sell();
-				chain2->push_back(card);
-				cout << " Chain 2 sold and put " << card->getName() << " in it.";
+			else {
+				cout << "Choose a chain to sell between chain 1 (1) or chain 2 (2) : ";
+				cin >> answer;
+				while (answer != '1' && answer != '2') {
+					cout << "Invalid choice chain 1 (1) or chain 2 (2) : ";
+					cin >> answer;
+				}
+
+				if (answer == '1') {
+					gain = chain1->sell();
+					chain1->push_back(card);
+					cout << " Chain 1 sold and put " << card->getName() << " in it. " << endl;
+				}
+				else if (answer == '2') {
+					gain = chain2->sell();
+					chain2->push_back(card);
+					cout << " Chain 2 sold and put " << card->getName() << " in it. " << endl;
+				}
 			}
-			else if (answer == '3') {
-				chain3->sell();
-				chain3->push_back(card);
-				cout << " Chain 3 sold and put " << card->getName() << " in it.";
-			}
+			this->numCoins += gain;
+			cout << this->name << " has " << this->getNumCoins() << " coins" << endl;;
 		}
 	}
+}
+
+int Player::getNumOfCards() {
+	int num = 0;
+	if (chain1 != nullptr) {
+		num += chain1->size();
+	}
+
+	if (chain2 != nullptr) {
+		num += chain2->size();
+	}
+
+	if (numChains == 3 && chain3 != nullptr) {
+		num += chain3->size();
+	}
+
+	if (hand != nullptr) {
+		num += hand->size();
+	}
+
+	return num;
 }
 
 

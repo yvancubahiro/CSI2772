@@ -49,11 +49,12 @@ void Table::printHand(bool showHand) {
 }
 
 Table::Table(string name1, string name2) {
-	players[0] = new Player(name1);
-	players[1] = new Player(name2);
+	players.push_back( new Player(name1));
+	players.push_back(new Player(name2));
 	cardFactory = new CardFactory();
 	deck = new Deck(cardFactory->getDeck());
 	discardPile = new DiscardPile();
+	tradeArea = new TradeArea();
 }
 
 Table :: Table(istream& input, const CardFactory* cardFactory) {
@@ -75,6 +76,7 @@ void Table::display() {
 
 	cout << "-------------- PLAYERS -------------" << endl;
 	players[0]->display();
+	cout << "------------------------------------" << endl;
 	players[1]->display();
 	cout << "--------------- DECK ---------------" << endl;
 	deck->display();

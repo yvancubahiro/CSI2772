@@ -15,9 +15,11 @@ public:
 	int numCards();
 	friend ostream& operator << (ostream&, TradeArea);
 	TradeArea(istream&, const CardFactory*);
+	TradeArea(){};
 	void display();
 	bool contains(Card*);
 	void remove(Card* card);
+	void removeIndex(int);
 };
 
 TradeArea& TradeArea :: operator+=(Card* card) {
@@ -87,12 +89,13 @@ void TradeArea::display() {
 }
 
 bool TradeArea :: contains(Card* card) {
+	if (card == nullptr) return false;
 	for (Card* tradeAreaCard : this->cards) {
 		if (tradeAreaCard->getName() == card->getName()) {
 			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 void TradeArea::remove(Card* card2) {
@@ -106,8 +109,14 @@ void TradeArea::remove(Card* card2) {
 		index++;
 		if (card->getName() == card2->getName()) {
 
-			this->cards.erase(std::next(this->cards.begin(), index - 1), std::next(this->cards.begin(), index + 1));
+			removeIndex(index);
 			break;
 		}
 	}
+}
+
+void TradeArea::removeIndex(int index) {
+	auto iterator = this->cards.begin();
+	advance(iterator, index - 1);
+	this->cards.erase(iterator);
 }

@@ -13,6 +13,7 @@ public :
 	Hand() {};
 	void display();
 	Card* pickACard(CardFactory * cardFacctory);
+	void remove(int);
 };
 
 Hand& Hand :: operator+=(Card* card) {
@@ -22,7 +23,7 @@ Hand& Hand :: operator+=(Card* card) {
 
 Card* Hand :: play() {
 	if (this->empty()) {
-		cout << "Hand is empty";
+		cout << "Hand is empty" << endl;;
 		return nullptr;
 	}
 	else {
@@ -34,7 +35,7 @@ Card* Hand :: play() {
 
 Card* Hand :: top() {
 	if (this->empty()) {
-		cout << "Hand is empty";
+		cout << "Hand is empty" << endl;
 		return nullptr;
 	}
 	else {
@@ -44,7 +45,7 @@ Card* Hand :: top() {
 
 Card* Hand :: operator[](int index) {
 	if (this->size() == 0) {
-		cout << "Hand is empty";
+		cout << "Hand is empty" << endl;
 		return nullptr;
 	}
 	Card* card = this->at(index);
@@ -89,36 +90,43 @@ void Hand::display() {
 }
 
 Card* Hand::pickACard(CardFactory * cardFactory) {
-	char answer;
+	string answer;
 	bool matched = false;
-	Card* card = nullptr;
-	int index = 0;
+	Card* result = nullptr;
+	int index;
 
 	cout << "Choose a card between: ";
 	for (Card* card : *this) {
-		cout << card->getName() << " " << (card->getName().at(0)) << " , ";
+		cout << card->getName() << " , ";
 	}
 	cout << " : ";
 	cin >> answer;
 
 	do {
+		index = 0;
 		for (Card* card : *this) {
 			index++;
-			if (card->getName().at(0) == answer) {
-				
-				this->erase(std::next(this->begin(), index - 1), std::next(this->begin(), index + 1));
-
-				card = cardFactory->getCard(answer);
+			if (card->getName() == answer) {
+				result = cardFactory->getCard(card->getName().at(0));
+				remove(index);
 				matched = true;
 				break;
 			}
 		}
 
-		cout << "The picked card is not in hand try another card : ";
-		cin >> answer;
+		if (!matched) {
+			cout << "The picked card is not in hand try another card : ";
+			cin >> answer;
+		}
 
 	} while (!matched);
 
-	return card;
+	return result;
 }
 
+
+void Hand::remove(int index) {
+	auto iterator = this->begin();
+	advance(iterator, index-1);
+	this->erase(iterator);
+}

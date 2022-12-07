@@ -9,8 +9,9 @@ class Chain_Base : public vector<Card*>{
 public :
 	virtual int sell() = 0;
 	int numOfCards = 0;
-	string type;
+	string type = "Empty";
 	void display();
+	Chain_Base& operator+=(Card*);
 };
 
 template <class T> class Chain: public Chain_Base{
